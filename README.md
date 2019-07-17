@@ -15,9 +15,7 @@ DotNetFramework.CAP 是一个基于 .NET Framework的 C# 库，它是一种处�
     a. 删除DashBoard.暂时没有实现。
   
     b. 启动配置修改。
-  
-Exp.
-  ./App_Srart
+    ./App_Srart
     public class CapConfig
     {
         public static IServiceCollection Services { get; set; }
