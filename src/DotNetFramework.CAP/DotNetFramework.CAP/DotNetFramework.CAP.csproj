@@ -1,0 +1,192 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{7038C4B7-AB29-4BBC-A645-7518AC468DBE}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DotNetFramework.CAP</RootNamespace>
+    <AssemblyName>DotNetFramework.CAP</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Autofac, Version=4.9.2.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.4.9.2\lib\net45\Autofac.dll</HintPath>
+    </Reference>
+    <Reference Include="Consul, Version=0.7.2.6, Culture=neutral, PublicKeyToken=20a6ad9a81df1d95, processorArchitecture=MSIL">
+      <HintPath>..\packages\Consul.0.7.2.6\lib\net45\Consul.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Serilog, Version=2.0.0.0, Culture=neutral, PublicKeyToken=24c2f752a8e58a10, processorArchitecture=MSIL">
+      <HintPath>..\packages\Serilog.2.8.0\lib\net45\Serilog.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Diagnostics.DiagnosticSource, Version=4.0.3.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Diagnostics.DiagnosticSource.4.5.1\lib\net45\System.Diagnostics.DiagnosticSource.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest" />
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\netstandard1.0\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Abstractions\CapPublisherBase.cs" />
+    <Compile Include="Abstractions\IContentSerializer.cs" />
+    <Compile Include="Abstractions\IModelBinderFactory.cs" />
+    <Compile Include="Abstractions\IMongoTransaction.cs" />
+    <Compile Include="Abstractions\ModelBinding\IModelBinder.cs" />
+    <Compile Include="Abstractions\ModelBinding\ModelBindingResult.cs" />
+    <Compile Include="Abstractions\TopicAttribute.cs" />
+    <Compile Include="BrokerConnectionException.cs" />
+    <Compile Include="CAP.AppBuilderExtensions.cs" />
+    <Compile Include="CAP.Builder.cs" />
+    <Compile Include="CAP.Options.cs" />
+    <Compile Include="CAP.ServiceCollectionExtensions.cs" />
+    <Compile Include="CAP.SubscribeAttribute.cs" />
+    <Compile Include="ConsumerExecutorDescriptor.cs" />
+    <Compile Include="Core\Ioc\ActivatorUtilities.cs" />
+    <Compile Include="Core\Ioc\IServiceCollection.cs" />
+    <Compile Include="Core\Ioc\IServiceProvider.cs" />
+    <Compile Include="Core\Ioc\IServiceScope.cs" />
+    <Compile Include="Core\Ioc\ServiceDescriptor.cs" />
+    <Compile Include="Core\Logger\ILogger.cs" />
+    <Compile Include="Core\Logger\ILoggerFactory.cs" />
+    <Compile Include="Diagnostics\DiagnosticListenerExtensions.cs" />
+    <Compile Include="Diagnostics\EventData.Broker.Consume.cs" />
+    <Compile Include="Diagnostics\EventData.Broker.ConsumeEnd.cs" />
+    <Compile Include="Diagnostics\EventData.Broker.ConsumeError.cs" />
+    <Compile Include="Diagnostics\EventData.Broker.cs" />
+    <Compile Include="Diagnostics\EventData.Broker.Publish.cs" />
+    <Compile Include="Diagnostics\EventData.Broker.PublishEnd.cs" />
+    <Compile Include="Diagnostics\EventData.Broker.PublishError.cs" />
+    <Compile Include="Diagnostics\EventData.cs" />
+    <Compile Include="Diagnostics\EventData.SubscriberInvoke.cs" />
+    <Compile Include="Diagnostics\EventData.SubscriberInvokeEnd.cs" />
+    <Compile Include="Diagnostics\EventData.SubscriberInvokeError.cs" />
+    <Compile Include="Diagnostics\IErrorEventData.cs" />
+    <Compile Include="Diagnostics\TracingHeaders.cs" />
+    <Compile Include="IBootstrapper.cs" />
+    <Compile Include="IBootstrapper.Default.cs" />
+    <Compile Include="ICallbackPublisher.cs" />
+    <Compile Include="ICapOptionsExtension.cs" />
+    <Compile Include="ICapPublisher.cs" />
+    <Compile Include="ICapSubscribe.cs" />
+    <Compile Include="ICapTransaction.Base.cs" />
+    <Compile Include="ICapTransaction.cs" />
+    <Compile Include="IConsumerClient.cs" />
+    <Compile Include="IConsumerClientFactory.cs" />
+    <Compile Include="IConsumerRegister.cs" />
+    <Compile Include="IConsumerRegister.Default.cs" />
+    <Compile Include="IConsumerServiceSelector.cs" />
+    <Compile Include="IConsumerServiceSelector.Default.cs" />
+    <Compile Include="IDispatcher.cs" />
+    <Compile Include="Infrastructure\Helper.cs" />
+    <Compile Include="Infrastructure\ObjectId.cs" />
+    <Compile Include="Infrastructure\SnowflakeId.cs" />
+    <Compile Include="Infrastructure\StatusName.cs" />
+    <Compile Include="Infrastructure\WaitHandleEx.cs" />
+    <Compile Include="Internal\CapCache.cs" />
+    <Compile Include="Internal\ConsumerContext.cs" />
+    <Compile Include="Internal\ConsumerExecutedResult.cs" />
+    <Compile Include="Internal\ConsumerInvokerFactory.cs" />
+    <Compile Include="Internal\HashCodeCombiner.cs" />
+    <Compile Include="Internal\ICallbackMessageSender.cs" />
+    <Compile Include="Internal\ICallbackMessageSender.Default.cs" />
+    <Compile Include="Internal\IConsumerInvoker.cs" />
+    <Compile Include="Internal\IConsumerInvoker.Default.cs" />
+    <Compile Include="Internal\IConsumerInvokerFactory.cs" />
+    <Compile Include="Internal\IContentSerializer.Json.cs" />
+    <Compile Include="Internal\IMessagePacker.Default.cs" />
+    <Compile Include="Internal\IModelBinder.ComplexType.cs" />
+    <Compile Include="Internal\IModelBinder.SimpleType.cs" />
+    <Compile Include="Internal\LoggerExtensions.cs" />
+    <Compile Include="Internal\MethodBindException.cs" />
+    <Compile Include="Internal\MethodMatcherCache.cs" />
+    <Compile Include="Internal\ModelBinderFactory.cs" />
+    <Compile Include="Internal\NoopTransaction.cs" />
+    <Compile Include="Internal\ObjectMethodExecutor\AwaitableInfo.cs" />
+    <Compile Include="Internal\ObjectMethodExecutor\CoercedAwaitableInfo.cs" />
+    <Compile Include="Internal\ObjectMethodExecutor\ObjectMethodExecutor.cs" />
+    <Compile Include="Internal\ObjectMethodExecutor\ObjectMethodExecutorAwaitable.cs" />
+    <Compile Include="Internal\ObjectMethodExecutor\ObjectMethodExecutorFSharpSupport.cs" />
+    <Compile Include="Internal\PublisherSentFailedException.cs" />
+    <Compile Include="Internal\SubscriberExecutionFailedException.cs" />
+    <Compile Include="Internal\SubscriberNotFoundException.cs" />
+    <Compile Include="IProcessingServer.cs" />
+    <Compile Include="IPublishExecutor.cs" />
+    <Compile Include="IPublishMessageSender.Base.cs" />
+    <Compile Include="IPublishMessageSender.cs" />
+    <Compile Include="IStorage.cs" />
+    <Compile Include="IStorageConnection.cs" />
+    <Compile Include="IStorageTransaction.cs" />
+    <Compile Include="ISubscribeExecutor.Default.cs" />
+    <Compile Include="ISubscriberExecutor.cs" />
+    <Compile Include="MessageContext.cs" />
+    <Compile Include="Models\CapMessageDto.cs" />
+    <Compile Include="Models\CapPublishedMessage.cs" />
+    <Compile Include="Models\CapReceivedMessage.cs" />
+    <Compile Include="Models\MessageType.cs" />
+    <Compile Include="MqLogType.cs" />
+    <Compile Include="NodeDiscovery\CAP.DiscoveryOptions.cs" />
+    <Compile Include="NodeDiscovery\CAP.DiscoveryOptionsExtensions.cs" />
+    <Compile Include="NodeDiscovery\IDiscoveryProviderFactory.cs" />
+    <Compile Include="NodeDiscovery\IDiscoveryProviderFactory.Default.cs" />
+    <Compile Include="NodeDiscovery\INodeDiscoveryProvider.Consul.cs" />
+    <Compile Include="NodeDiscovery\INodeDiscoveryProvider.cs" />
+    <Compile Include="NodeDiscovery\IProcessingServer.Consul.cs" />
+    <Compile Include="NodeDiscovery\Node.cs" />
+    <Compile Include="OperateResult.cs" />
+    <Compile Include="Processor\ICollectProcessor.cs" />
+    <Compile Include="Processor\IDispatcher.Default.cs" />
+    <Compile Include="Processor\IProcessingServer.Cap.cs" />
+    <Compile Include="Processor\IProcessor.cs" />
+    <Compile Include="Processor\IProcessor.InfiniteRetry.cs" />
+    <Compile Include="Processor\IProcessor.NeedRetry.cs" />
+    <Compile Include="Processor\IProcessor.TransportCheck.cs" />
+    <Compile Include="Processor\ProcessingContext.cs" />
+    <Compile Include="Processor\RetryBehavior.cs" />
+    <Compile Include="Processor\States\IState.cs" />
+    <Compile Include="Processor\States\IState.Failed.cs" />
+    <Compile Include="Processor\States\IState.Scheduled.cs" />
+    <Compile Include="Processor\States\IState.Succeeded.cs" />
+    <Compile Include="Processor\States\IStateChanger.cs" />
+    <Compile Include="Processor\States\IStateChanger.Default.cs" />
+    <Compile Include="Processor\States\IStateChanger.Extensions.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
