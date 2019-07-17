@@ -71,10 +71,13 @@ Exp.
               public static void Commit(this DbContextTransaction trans, ICapPublisher bus)
               {
                   bus.Transaction.Commit();
-              }   
+              }    
               
-     提交事务使用如下代码：           
-   transaction.Commit(_capBus);   详情参阅例子代码CapWeb251 
+              提交事务使用如下代码：   
+              transaction.Commit(_capBus);   详情参阅例子代码CapWeb251 
+              
+        
+
    
 
    
