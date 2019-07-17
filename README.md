@@ -16,6 +16,8 @@ DotNetFramework.CAP 是一个基于 .NET Framework的 C# 库，它是一种处�
   
     b. 启动配置修改。
     ./App_Srart
+    
+    
     public class CapConfig
     {
         public static IServiceCollection Services { get; set; }
