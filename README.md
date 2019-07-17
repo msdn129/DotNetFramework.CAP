@@ -56,6 +56,7 @@ Exp.
      connection.Execute(sql);
      
     e. Sqlserver执行操作的发布消息时机的改动。
+    f. EntityFramework执行操作的发布消息时机的改动。
     
     Diagnostic.DiagnosticSource
     由于原作者（DoNetCoreCAP基本Core下Sqlserver的Diagnostic，完成的观测时机进行发布），
@@ -68,9 +69,16 @@ Exp.
               public static void Commit(this DbContextTransaction trans, ICapPublisher bus)
               {
                   bus.Transaction.Commit();
-              }
-   提交事务使用如下代码：           
+              }   
+     提交事务使用如下代码：           
    transaction.Commit(_capBus);   详情参阅例子代码CapWeb251 
+   
+
+   
+   
+   
+   
+
    
     
 
