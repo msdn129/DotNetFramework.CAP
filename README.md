@@ -1,23 +1,22 @@
 # DotNetFramework.CAP
 DotNetFramework.CAP 是一个基于 .NET Framework的 C# 库，它是一种处理分布式事务的解决方案,基于DotNetCore.CAP修改。
 
-
 1. 此代码是基于DotCore.CAP 2.5.1 版本修改.
 
 2. DotNetFramework.CAP 新增Core文件夹主要实现 DotNetCore下的Ioc容器. 日志Logger.
 
-  a.  使用 AutoFac 实现 ServiceProvider,ServiceCollection,ServiceScope,ActivatorUtilities.
+    a.  使用 AutoFac 实现 ServiceProvider,ServiceCollection,ServiceScope,ActivatorUtilities.
   
-  b.  使用 Serilog 实现 Core下的Logger.
+    b.  使用 Serilog 实现 Core下的Logger.
   
   
 3. 内部代码修改如下：
 
-  a. 删除DashBoard.暂时没有实现。
+    a. 删除DashBoard.暂时没有实现。
   
-  b. 启动配置修改。
+    b. 启动配置修改。
   
-  Exp.
+Exp.
   ./App_Srart
     public class CapConfig
     {
