@@ -1,20 +1,20 @@
 # DotNetFramework.CAP
 DotNetFramework.CAP 是一个基于 .NET Framework的 C# 库，它是一种处理分布式事务的解决方案,基于DotNetCore.CAP修改。
 
-1. 此代码是基于DotCore.CAP 2.5.1 版本修改.
+##1. 此代码是基于DotCore.CAP 2.5.1 版本修改.
 
-2. DotNetFramework.CAP 新增Core文件夹主要实现 DotNetCore下的Ioc容器. 日志Logger.
+##2. DotNetFramework.CAP 新增Core文件夹主要实现 DotNetCore下的Ioc容器. 日志Logger.
 
-    a.  使用 AutoFac 实现 ServiceProvider,ServiceCollection,ServiceScope,ActivatorUtilities.
+    ###a.  使用 AutoFac 实现 ServiceProvider,ServiceCollection,ServiceScope,ActivatorUtilities.
   
-    b.  使用 Serilog 实现 Core下的Logger.
+    ###b.  使用 Serilog 实现 Core下的Logger.
   
   
-3. 内部代码修改如下：
+##3. 内部代码修改如下：
 
-    a. 删除DashBoard.暂时没有实现。
+    ###a. 删除DashBoard.暂时没有实现。
   
-    b. 启动配置修改。
+    ###b. 启动配置修改。
     ./App_Srart
     
     public class CapConfig
@@ -46,16 +46,16 @@ DotNetFramework.CAP 是一个基于 .NET Framework的 C# 库，它是一种处�
         CapConfig.RegisterCap();
     }
     
-    c.  获取controller下订阅方法修改。
+    ###c.  获取controller下订阅方法修改。
      （这里由于.net core asp.net 和 framework asp.net的web机制变化）
             //heng
             //var types = Assembly.GetEntryAssembly().ExportedTypes;
             var types = BuildManager.GetGlobalAsaxType().BaseType.Assembly.ExportedTypes;
-    d. Dapper执行Sql （将异步执行改为同步，因为发现在frameworkwork下会卡死）
+    ###d. Dapper执行Sql （将异步执行改为同步，因为发现在frameworkwork下会卡死）
      connection.Execute(sql);
      
-    e. Sqlserver执行操作的发布消息时机的改动。
-    f. EntityFramework执行操作的发布消息时机的改动。
+    ###e. Sqlserver执行操作的发布消息时机的改动。
+    ###f. EntityFramework执行操作的发布消息时机的改动。
     
     Diagnostic.DiagnosticSource
     由于原作者（DoNetCoreCAP基于Core下Sqlserver的Diagnostic，完成的观测时机进行发布消息），
