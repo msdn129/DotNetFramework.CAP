@@ -56,9 +56,10 @@ DotNetFramework.CAP 是一个基于 .NET Framework的 C# 库，它是一种处�
     e. Sqlserver执行操作的发布消息时机的改动。
     
     Diagnostic.DiagnosticSource
-    由于原作者（DoNetCoreCAP基本Core下Sqlserver的Diagnostic，完成的观测时机进行发布），framework下Sqlserver Client没有实现Diagnostic的可观测行为。
+    由于原作者（DoNetCoreCAP基本Core下Sqlserver的Diagnostic，完成的观测时机进行发布），
+    framework下Sqlserver Client没有实  现Diagnostic的可观测行为。    
     
-   修改为：   public static void Commit(this IDbTransaction trans, ICapPublisher bus)
+    修改为：   public static void Commit(this IDbTransaction trans, ICapPublisher bus)
               {
                   bus.Transaction.Commit();
               }
@@ -69,6 +70,8 @@ DotNetFramework.CAP 是一个基于 .NET Framework的 C# 库，它是一种处�
    提交事务使用如下代码：           
    transaction.Commit(_capBus);   详情参阅例子代码CapWeb251 
    
+    
+
    
    
               
