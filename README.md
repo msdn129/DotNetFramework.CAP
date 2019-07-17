@@ -67,7 +67,7 @@ DotNetFramework.CAP 是一个基于 .NET Framework的 C# 库，它是一种处�
                   bus.Transaction.Commit();
               }
    提交事务使用如下代码：           
-   transaction.Commit(_capBus);   详情参阅例子代码CapWeb251
+   transaction.Commit(_capBus);   详情参阅例子代码CapWeb251 
    
    
    
