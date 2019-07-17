@@ -69,6 +69,15 @@ namespace CapWeb251.Controllers
             return "value:" + 1;
         }
 
+
+        public string EF(int id)
+        {
+
+            return "value:" + 1;
+        }
+
+
+
         // POST api/values
         public void Post([FromBody]string value)
         {

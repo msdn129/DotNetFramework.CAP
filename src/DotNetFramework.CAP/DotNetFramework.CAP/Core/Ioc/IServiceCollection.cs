@@ -40,8 +40,10 @@ namespace DotNetFramework.CAP.Core.Ioc
 
         IServiceCollection AddInstance<TService>(TService instance) where TService : class;
 
+        IServiceCollection AddScopedMuti<TService, TImplementation>();
 
-         void BeginRegister();
+
+        void BeginRegister();
 
     }
 
@@ -66,6 +68,7 @@ namespace DotNetFramework.CAP.Core.Ioc
             this.AddInstance(ServiceProvider);
             Container = _builder.Build();
             ServiceProvider.Container = Container;
+            ServiceProvider.ServiceCollection = this;
 
         }
 
@@ -127,17 +130,25 @@ namespace DotNetFramework.CAP.Core.Ioc
         void IServiceCollection.TryAddSingleton<TService, TImplementation>()
         {
 
-            ListServiceDescriptor.Add(new ServiceDescriptor(typeof(TService), typeof(TService)));
+            ListServiceDescriptor.Add(new ServiceDescriptor(typeof(TImplementation), typeof(TService)));
             _builder.RegisterType<TImplementation>().As<TService>().SingleInstance();
         }
 
         IServiceCollection IServiceCollection.AddSingleton<TService, TImplementation>()
         {
 
-            ListServiceDescriptor.Add(new ServiceDescriptor(typeof(TService), typeof(TService)));
+            ListServiceDescriptor.Add(new ServiceDescriptor(typeof(TImplementation), typeof(TService)));
             _builder.RegisterType<TImplementation>().As<TService>().SingleInstance();
             return this;
         }
+
+        public IServiceCollection AddScopedMuti<TService, TImplementation>()
+        {
+            ListServiceDescriptor.Add(new ServiceDescriptor(typeof(TImplementation), typeof(TService)));
+            _builder.RegisterType<TImplementation>().Named<TService>(typeof(TImplementation).Name);
+            return this;
+        }
+
 
         public IServiceCollection AddSingleton<TService>(Func<IServiceProvider, TService> implementationFactory) where TService : class
         {

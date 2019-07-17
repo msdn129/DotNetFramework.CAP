@@ -1,4 +1,5 @@
-﻿using DotNetFramework.CAP;
+﻿using CapWeb251.Controllers;
+using DotNetFramework.CAP;
 using DotNetFramework.CAP.Core.Ioc;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -29,6 +30,10 @@ namespace CapWeb251
                     option.Password = "123456";
                 });
             });
+
+            Services.AddScopedMuti<ICapSubscribe, OpService>();
+            Services.AddScopedMuti<ICapSubscribe, Op2Service>();
+
             Services.BeginRegister();
             Services.ServiceProvider.GetService<IBootstrapper>().BootstrapAsync(new CancellationToken());
         }

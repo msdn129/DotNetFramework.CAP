@@ -26,10 +26,14 @@ namespace DotNetFramework.CAP.Core.Ioc
         object GetService(Type serviceType);
 
         IContainer Container { get; set; }
+
+        IServiceCollection ServiceCollection { get; set; }
     }
 
     public class ServiceProvider : IServiceProvider
     {
+        public IServiceCollection ServiceCollection { get; set; }
+
         public ILifetimeScope Scope
         {
             get
@@ -72,6 +76,7 @@ namespace DotNetFramework.CAP.Core.Ioc
             _serviceScope.ServiceProvider = new ServiceProvider();
             _serviceScope.ServiceProvider.Container = this._container;
             _serviceScope.ServiceProvider.Scope = _scope;
+            _serviceScope.ServiceProvider.ServiceCollection = this.ServiceCollection;
             return _serviceScope;
         }
 
@@ -103,10 +108,31 @@ namespace DotNetFramework.CAP.Core.Ioc
 
         public IEnumerable<object> GetServices(Type serviceType)
         {
-            var impl = GetService(serviceType);
-            if (impl != null)
-                yield return impl;
+            foreach (var item in ServiceCollection)
+            {
+                if (item.ServiceType == serviceType)
+                {
+                    var impl = GetServiceByName(item.ImplementationType.Name,serviceType);
+                    if (impl != null)
+                        yield return impl;
+                }
+         
+            }
         }
+
+        private object GetServiceByName(string Name, Type serviceType)
+        {
+            try
+            {
+                return _root.ResolveNamed(Name, serviceType);
+            } 
+            catch
+            {
+                Log.Warning(serviceType.FullName);
+                return null;
+            }
+        }
+
 
         public IEnumerable<object> GetServices<T>()
         {
