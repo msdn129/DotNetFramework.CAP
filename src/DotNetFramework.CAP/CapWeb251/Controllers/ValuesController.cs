@@ -50,22 +50,22 @@ namespace CapWeb251.Controllers
         // GET api/values/5
         public string Get(int id)
         {
-            //using (var connection = new SqlConnection("Data Source=localhost;database=donet61;Uid=sa;pwd=sa"))
-            //{
-            //    using (var transaction = connection.BeginTransaction(_capBus, autoCommit: false))
-            //    {
-            //        //业务代码
-            //        string sql = "update [donet61].[dbo].[T_User] set UserName = '1234' Where id = 1 ";
+            using (var connection = new SqlConnection("Data Source=localhost;database=donet61;Uid=sa;pwd=sa"))
+            {
+                using (var transaction = connection.BeginTransaction(_capBus, autoCommit: false))
+                {
+                    //业务代码
+                    string sql = "update [donet61].[dbo].[T_User] set UserName = '1234' Where id = 1 ";
 
 
-            //        //这里的事务是指  发送消息和执行当前SQL一致性
-            //        connection.Execute(sql,transaction: transaction);
+                    //这里的事务是指  发送消息和执行当前SQL一致性
+                    connection.Execute(sql, transaction: transaction);
 
-            //        _capBus.Publish("xxx.services.update.username", "12", "callback-show-execute-time");
+                    _capBus.Publish("xxx.services.update.username", "12", "callback-show-execute-time");
 
-            //         transaction.Commit(_capBus);
-            //    }
-            //}
+                    transaction.Commit(_capBus);
+                }
+            }
 
 
             var service = new EFService();
