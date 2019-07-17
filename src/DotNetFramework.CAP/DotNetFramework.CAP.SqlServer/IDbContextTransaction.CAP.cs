@@ -3,20 +3,20 @@
 
 //using System;
 //using System.Data.Common;
+//using System.Data.Entity;
 //using DotNetFramework.CAP;
-//using DotNetFramework.CAP.Core.EF;
 
 //// ReSharper disable once CheckNamespace
 //namespace Microsoft.EntityFrameworkCore.Storage
 //{
-//    internal class CapEFDbTransaction : IDbContextTransaction
+//    internal class CapEFDbTransaction 
 //    {
 //        private readonly ICapTransaction _transaction;
 
 //        public CapEFDbTransaction(ICapTransaction transaction)
 //        {
 //            _transaction = transaction;
-//            var dbContextTransaction = (IDbContextTransaction) _transaction.DbTransaction;
+//            var dbContextTransaction = (DbContextTransaction)_transaction.DbTransaction;
 //            TransactionId = dbContextTransaction.TransactionId;
 //        }
 

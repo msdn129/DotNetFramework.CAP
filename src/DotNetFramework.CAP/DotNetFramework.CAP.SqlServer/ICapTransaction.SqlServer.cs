@@ -156,5 +156,20 @@ namespace DotNetFramework.CAP
             var capTransaction = publisher.Transaction.Begin(dbTransaction, autoCommit);
             return (IDbTransaction) capTransaction.DbTransaction;
         }
+
+        /// <summary>
+        /// Start the CAP transaction
+        /// </summary>
+        /// <param name="database">The <see cref="DatabaseFacade" />.</param>
+        /// <param name="publisher">The <see cref="ICapPublisher" />.</param>
+        /// <param name="autoCommit">Whether the transaction is automatically committed when the message is published</param>
+        /// <returns>The <see cref="IDbContextTransaction" /> of EF dbcontext transaction object.</returns>
+        public static DbContextTransaction BeginTransaction(this Database database,
+            ICapPublisher publisher, bool autoCommit = false)
+        {
+            var trans = database.BeginTransaction();
+            var capTrans = publisher.Transaction.Begin(trans, autoCommit);
+            return trans;
+        }
     }
 }

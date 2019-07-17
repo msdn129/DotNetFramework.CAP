@@ -20,7 +20,7 @@ namespace CapWeb251
             Services.AddCap(stetup =>
             {
                 // 注册节点到 Consul
-                stetup.UseSqlServer("Data Source=localhost;database=donet61;Uid=sa;pwd=sa;");
+                stetup.UseSqlServer("Data Source=localhost;database=EFCodeFirst;Uid=sa;pwd=sa;");
                 stetup.UseRabbitMQ(option =>
                 {
                     option.VirtualHost = "HengQueue";
