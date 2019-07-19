@@ -6,6 +6,7 @@ using System.Collections.Concurrent;
 using System.Diagnostics;
 using System.Reflection;
 using System.Threading;
+using System.Web.Compilation;
 using  DotNetFramework.CAP.Core.Logger;
 using RabbitMQ.Client;
 
@@ -91,7 +92,10 @@ namespace DotNetFramework.CAP.RabbitMQ
 
         private static Func<IConnection> CreateConnection(RabbitMQOptions options)
         {
-            var serviceName = Assembly.GetEntryAssembly()?.GetName().Name.ToLower();
+            //var serviceName = Assembly.GetEntryAssembly()?.GetName().Name.ToLower();
+            //heng
+            var assembly = BuildManager.GetGlobalAsaxType().BaseType.Assembly;
+            var serviceName = assembly?.GetName().Name.ToLower();
 
             var factory = new ConnectionFactory
             {

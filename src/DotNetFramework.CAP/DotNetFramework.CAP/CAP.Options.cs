@@ -4,6 +4,7 @@
 using System;
 using System.Collections.Generic;
 using System.Reflection;
+using System.Web.Compilation;
 using DotNetFramework.CAP.Models;
 // ReSharper disable InconsistentNaming
 
@@ -42,7 +43,10 @@ namespace DotNetFramework.CAP
             FailedRetryCount = DefaultFailedRetryCount;
             Extensions = new List<ICapOptionsExtension>();
             Version = DefaultVersion;
-            DefaultGroup = "cap.queue." + Assembly.GetEntryAssembly()?.GetName().Name.ToLower();
+            //heng
+            //var types = Assembly.GetEntryAssembly().ExportedTypes;
+            var assembly = BuildManager.GetGlobalAsaxType().BaseType.Assembly;
+            DefaultGroup = "cap.queue." + assembly?.GetName().Name.ToLower();
         }
 
         internal IList<ICapOptionsExtension> Extensions { get; }
