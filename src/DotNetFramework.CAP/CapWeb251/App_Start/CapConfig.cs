@@ -29,6 +29,7 @@ namespace CapWeb251
                     option.UserName = "zhangheng";
                     option.Password = "123456";
                 });
+                stetup.DefaultGroup = "cap.queue.capweb251.v1 ";
             });
 
             Services.AddScopedMuti<ICapSubscribe, OpService>();
