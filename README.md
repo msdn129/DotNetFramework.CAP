@@ -1,20 +1,30 @@
+#  å¾®ä¿¡éƒ½æ˜¯è¢«é™åˆ¶ç½‘é¡µç™»å½•çš„ï¼Œitchatå…¶ä»–è§£å†³æ–¹æ¡ˆ   
+
+
+å®ç°å¾®ä¿¡80%çš„åŠŸèƒ½æ¥å£
+
+
+è”ç³»QQ 355809289
+
+
+
 # DotNetFramework.CAP
-DotNetFramework.CAP ÊÇÒ»¸ö»ùÓÚ .NET FrameworkµÄ C# ¿â£¬ËüÊÇÒ»ÖÖ´¦Àí·Ö²¼Ê½ÊÂÎñµÄ½â¾ö·½°¸,»ùÓÚDotNetCore.CAPĞŞ¸Ä¡£
+DotNetFramework.CAP æ˜¯ä¸€ä¸ªåŸºäº .NET Frameworkçš„ C# åº“ï¼Œå®ƒæ˜¯ä¸€ç§å¤„ç†åˆ†å¸ƒå¼äº‹åŠ¡çš„è§£å†³æ–¹æ¡ˆ,åŸºäºDotNetCore.CAPä¿®æ”¹ã€‚
 
-##1. ´Ë´úÂëÊÇ»ùÓÚDotCore.CAP 2.5.1 °æ±¾ĞŞ¸Ä.
+##1. æ­¤ä»£ç æ˜¯åŸºäºDotCore.CAP 2.5.1 ç‰ˆæœ¬ä¿®æ”¹.
 
-##2. DotNetFramework.CAP ĞÂÔöCoreÎÄ¼ş¼ĞÖ÷ÒªÊµÏÖ DotNetCoreÏÂµÄIocÈİÆ÷. ÈÕÖ¾Logger.
+##2. DotNetFramework.CAP æ–°å¢Coreæ–‡ä»¶å¤¹ä¸»è¦å®ç° DotNetCoreä¸‹çš„Iocå®¹å™¨. æ—¥å¿—Logger.
 
-    ###a.  Ê¹ÓÃ AutoFac ÊµÏÖ ServiceProvider,ServiceCollection,ServiceScope,ActivatorUtilities.
+    ###a.  ä½¿ç”¨ AutoFac å®ç° ServiceProvider,ServiceCollection,ServiceScope,ActivatorUtilities.
   
-    ###b.  Ê¹ÓÃ Serilog ÊµÏÖ CoreÏÂµÄLogger.
+    ###b.  ä½¿ç”¨ Serilog å®ç° Coreä¸‹çš„Logger.
   
   
-##3. ÄÚ²¿´úÂëĞŞ¸ÄÈçÏÂ£º
+##3. å†…éƒ¨ä»£ç ä¿®æ”¹å¦‚ä¸‹ï¼š
 
-    ###a. É¾³ıDashBoard.ÔİÊ±Ã»ÓĞÊµÏÖ¡£
+    ###a. åˆ é™¤DashBoard.æš‚æ—¶æ²¡æœ‰å®ç°ã€‚
   
-    ###b. Æô¶¯ÅäÖÃĞŞ¸Ä¡£
+    ###b. å¯åŠ¨é…ç½®ä¿®æ”¹ã€‚
     ./App_Srart
     
     public class CapConfig
@@ -26,7 +36,7 @@ DotNetFramework.CAP ÊÇÒ»¸ö»ùÓÚ .NET FrameworkµÄ C# ¿â£¬ËüÊÇÒ»ÖÖ´¦Àí·Ö²¼Ê½ÊÂÎñµÄ½
             Services = new ServiceCollection();
             Services.AddCap(stetup =>
             {
-                // ×¢²á½Úµãµ½ Consul
+                // æ³¨å†ŒèŠ‚ç‚¹åˆ° Consul
                 stetup.UseSqlServer("Data Source=localhost;database=donet61;Uid=sa;pwd=sa;");
                 stetup.UseRabbitMQ(option =>
                 {
@@ -46,24 +56,24 @@ DotNetFramework.CAP ÊÇÒ»¸ö»ùÓÚ .NET FrameworkµÄ C# ¿â£¬ËüÊÇÒ»ÖÖ´¦Àí·Ö²¼Ê½ÊÂÎñµÄ½
         CapConfig.RegisterCap();
     }
     
-    ###c.  »ñÈ¡controllerÏÂ¶©ÔÄ·½·¨ĞŞ¸Ä¡£
-     £¨ÕâÀïÓÉÓÚ.net core asp.net ºÍ framework asp.netµÄweb»úÖÆ±ä»¯£©
+    ###c.  è·å–controllerä¸‹è®¢é˜…æ–¹æ³•ä¿®æ”¹ã€‚
+     ï¼ˆè¿™é‡Œç”±äº.net core asp.net å’Œ framework asp.netçš„webæœºåˆ¶å˜åŒ–ï¼‰
             //heng
             //var types = Assembly.GetEntryAssembly().ExportedTypes;
             var types = BuildManager.GetGlobalAsaxType().BaseType.Assembly.ExportedTypes;
-    ###d. DapperÖ´ĞĞSql £¨½«Òì²½Ö´ĞĞ¸ÄÎªÍ¬²½£¬ÒòÎª·¢ÏÖÔÚframeworkworkÏÂ»á¿¨ËÀ£©
+    ###d. Dapperæ‰§è¡ŒSql ï¼ˆå°†å¼‚æ­¥æ‰§è¡Œæ”¹ä¸ºåŒæ­¥ï¼Œå› ä¸ºå‘ç°åœ¨frameworkworkä¸‹ä¼šå¡æ­»ï¼‰
      connection.Execute(sql);
      
-    ###e. SqlserverÖ´ĞĞ²Ù×÷µÄ·¢²¼ÏûÏ¢Ê±»úµÄ¸Ä¶¯¡£
-    ###f. EntityFrameworkÖ´ĞĞ²Ù×÷µÄ·¢²¼ÏûÏ¢Ê±»úµÄ¸Ä¶¯¡£
+    ###e. Sqlserveræ‰§è¡Œæ“ä½œçš„å‘å¸ƒæ¶ˆæ¯æ—¶æœºçš„æ”¹åŠ¨ã€‚
+    ###f. EntityFrameworkæ‰§è¡Œæ“ä½œçš„å‘å¸ƒæ¶ˆæ¯æ—¶æœºçš„æ”¹åŠ¨ã€‚
     
     Diagnostic.DiagnosticSource
-    ÓÉÓÚÔ­×÷Õß£¨DoNetCoreCAP»ùÓÚCoreÏÂSqlserverµÄDiagnostic£¬Íê³ÉµÄ¹Û²âÊ±»ú½øĞĞ·¢²¼ÏûÏ¢£©£¬
-    È»¶øÔÚframeworkÏÂµÄSqlserver Client´úÂëÃ»ÓĞÊµÏÖDiagnosticµÄ¿É¹Û²âĞĞÎª¡£  £¨
+    ç”±äºåŸä½œè€…ï¼ˆDoNetCoreCAPåŸºäºCoreä¸‹Sqlserverçš„Diagnosticï¼Œå®Œæˆçš„è§‚æµ‹æ—¶æœºè¿›è¡Œå‘å¸ƒæ¶ˆæ¯ï¼‰ï¼Œ
+    ç„¶è€Œåœ¨frameworkä¸‹çš„Sqlserver Clientä»£ç æ²¡æœ‰å®ç°Diagnosticçš„å¯è§‚æµ‹è¡Œä¸ºã€‚  ï¼ˆ
     
-    À©Õ¹commit·½·¨ÊµÊ±ÏûÏ¢ÍÆËÍ£©  
+    æ‰©å±•commitæ–¹æ³•å®æ—¶æ¶ˆæ¯æ¨é€ï¼‰  
     
-    ĞŞ¸ÄÎª£º   public static void Commit(this IDbTransaction trans, ICapPublisher bus)
+    ä¿®æ”¹ä¸ºï¼š   public static void Commit(this IDbTransaction trans, ICapPublisher bus)
               {
                   bus.Transaction.Commit();
               }
@@ -72,8 +82,8 @@ DotNetFramework.CAP ÊÇÒ»¸ö»ùÓÚ .NET FrameworkµÄ C# ¿â£¬ËüÊÇÒ»ÖÖ´¦Àí·Ö²¼Ê½ÊÂÎñµÄ½
                   bus.Transaction.Commit();
               }    
               
-              Ìá½»ÊÂÎñÊ¹ÓÃÈçÏÂ´úÂë£º   
-              transaction.Commit(_capBus);   ÏêÇé²ÎÔÄÀı×Ó´úÂëCapWeb251 
+              æäº¤äº‹åŠ¡ä½¿ç”¨å¦‚ä¸‹ä»£ç ï¼š   
+              transaction.Commit(_capBus);   è¯¦æƒ…å‚é˜…ä¾‹å­ä»£ç CapWeb251 
               
         
 
