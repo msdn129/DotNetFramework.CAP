@@ -1,6 +1,7 @@
 #  微信都是被限制网页登录的，itchat其他解决方案   
 
 
+![image](https://github.com/msdn129/DotNetFramework.CAP/blob/master/123.png)
 实现微信80%的功能接口
 
 
